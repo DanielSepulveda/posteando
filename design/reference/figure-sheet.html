@@ -1,0 +1,484 @@
+<title>Posteando Figure Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,100..900,0..100,0..1&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Allo 1.1.0 by Josh Puckett, SIL Open Font License 1.1, https://allo.joshpuckett.me (Latin subset) */
+/*ALLO*/
+/* Layout: a specimen sheet on the same cotton desk. Cast first, then how they are built,
+   how they feel, how small they go, and each place they would live, with a plain verdict per place.
+   Single light look by choice, same as the landing. */
+:root{
+  --cotton:#EDEBDD; --cream:#F8F6EE; --card:#FFFDF7; --noir:#1B1717; --muted:#5F5852;
+  --cherry:#810100; --maroon:#630000; --azul:#27407A; --verde:#2C5B4C; --amarillo:#E8B62C; --naranja:#DD6A1F; --ciruela:#6A3D70;
+  --blush:#F1D3CC; --butter:#F2E2A0; --lav:#CFCFEA; --sky:#BFE1E4; --sage:#CFE0C3;
+  --rule:rgba(27,23,23,.085);
+  --f:"Allo",ui-rounded,"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Fraunces","Iowan Old Style",Georgia,serif;
+  --mono:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --line:1.5px solid var(--noir); --r:16px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip}
+body{background:var(--cotton);color:var(--noir);font-family:var(--f);font-size:16.5px;line-height:1.5;font-variation-settings:"ROND" 50;-webkit-font-smoothing:antialiased}
+.in{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance;font-variation-settings:"ROND" 100;font-weight:800;letter-spacing:-.035em;line-height:1.06}
+h1{font-size:clamp(2.3rem,5.4vw,3.9rem)}
+h2{font-size:clamp(1.6rem,3.2vw,2.2rem)}
+h3{font-size:1.15rem;letter-spacing:-.02em;line-height:1.2}
+p{margin:0}
+.serif{font-family:var(--serif);font-style:italic;font-weight:480;font-variation-settings:"SOFT" 100,"WONK" 1;letter-spacing:-.03em;color:var(--cherry);font-size:1.06em}
+.mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:1.12rem;max-width:40em;color:#2e2826}
+.muted{color:var(--muted)}
+.sm{font-size:.9rem}
+
+.fig{display:inline-block;width:88px;aspect-ratio:1;flex:none;vertical-align:middle}
+.fig svg{display:block;width:100%;height:100%;overflow:visible}
+.fig .p{transform:translate(var(--px,0px),var(--py,0px));transition:transform .12s ease-out}
+.fig.rest[data-esr="b"]{--px:2.3px;--py:1.5px}
+.fig[data-esr="c"] .eyes{transform:translate(calc(var(--px,0px)*.5),calc(var(--py,0px)*.5));transition:transform .12s ease-out}
+.fig .eye{transform-box:fill-box;transform-origin:center;transition:transform .1s ease-out}
+.fig.is-blink .eye{transform:scaleY(.06);transition-duration:.05s}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--cotton);border-bottom:var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--cotton)}
+.bar .in{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;padding-block:9px}
+.grp{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.seg{font:inherit;font-size:.84rem;font-weight:680;border:var(--line);border-radius:999px;background:var(--card);padding:.2em .8em;cursor:pointer;color:var(--noir)}
+.seg[aria-pressed="true"]{background:var(--noir);color:#fff}
+:focus-visible{outline:3px solid var(--cherry);outline-offset:2px}
+.eyegrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.eyecard{border:var(--line);border-radius:var(--r);background:var(--card);padding:18px;display:flex;flex-direction:column;gap:8px}
+.eyecard .six{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
+.eyecard .fig{width:100%}
+.eyecard p{font-size:.9rem;color:#2e2826;flex:1}
+.pick{font:inherit;font-size:.86rem;font-weight:700;border:var(--line);border-radius:11px;background:var(--cream);padding:.45em .8em;cursor:pointer;color:var(--noir)}
+.pick[aria-pressed="true"]{background:var(--cherry);color:#fff}
+.logos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:22px}
+.logo-c{border:var(--line);border-radius:var(--r);background:var(--card);padding:16px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.logo-c .big{display:grid;place-items:center;padding:8px 0 4px}
+.logo-c p{font-size:.92rem;color:#2e2826;flex:1}
+.lrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid rgba(27,23,23,.18);padding-top:12px}
+.lrow .tile{width:56px;height:56px;border-radius:14px}.lrow .word{font-size:1.25rem;gap:6px}
+.take{border:var(--line);border-radius:var(--r);background:var(--butter);padding:16px 20px;margin-top:18px;max-width:52rem}
+@media (max-width:1000px){.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:860px){.eyegrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.eyegrid{grid-template-columns:1fr}}
+.fig.think .p{animation:think 1.8s linear infinite}
+.fig.hop{animation:hop 2.6s ease-in-out infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
+@keyframes think{0%{transform:translate(-2.6px,-3px)}25%{transform:translate(2.6px,-3.4px)}50%{transform:translate(3px,-1px)}75%{transform:translate(-1px,-3.8px)}100%{transform:translate(-2.6px,-3px)}}
+@keyframes hop{0%,70%,100%{transform:translateY(0)}80%{transform:translateY(-7px)}90%{transform:translateY(0)}95%{transform:translateY(-3px)}}
+
+header.top{border-bottom:var(--line);background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:26px 26px}
+header.top .in{padding-block:64px 0;display:flex;flex-direction:column;gap:20px}
+.lineup{display:flex;align-items:flex-end;gap:clamp(8px,2.6vw,30px);margin-top:28px;margin-bottom:-10px;flex-wrap:nowrap;overflow:hidden;padding-top:10px}
+.lineup .fig{width:clamp(56px,13vw,132px)}
+.lineup .fig:nth-child(2n){margin-bottom:-8px}
+
+section{padding-block:72px;border-bottom:var(--line)}
+section:nth-of-type(2n){background:var(--cream)}
+.sec-h{display:flex;flex-direction:column;gap:12px;margin-bottom:36px;max-width:46rem}
+
+.cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.who{border:var(--line);border-radius:var(--r);background:var(--card);padding:22px;display:flex;flex-direction:column;gap:8px}
+.who .fig{width:104px;margin-bottom:8px}
+.who .role{display:inline-flex;align-self:flex-start;border:var(--line);border-radius:999px;padding:.05em .7em;font-size:.76rem;font-weight:700;background:var(--butter)}
+.who h3 small{font-size:.62em;font-weight:500;opacity:.6;margin-left:.3em;letter-spacing:.04em;text-transform:uppercase}
+.who p{font-size:.93rem;color:#2e2826}
+.who.bench{background:transparent;border-style:dashed}
+.who.bench .role{background:transparent}
+
+.two{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:44px;align-items:center}
+.grid-fig{border:var(--line);border-radius:var(--r);background:var(--card);padding:18px}
+.grid-fig svg{display:block;width:100%;height:auto}
+.rules{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;counter-reset:r}
+.rules li{display:grid;grid-template-columns:2em minmax(0,1fr);gap:0 10px;counter-increment:r}
+.rules li::before{content:counter(r);font-family:var(--mono);font-size:.76rem;width:2em;height:2em;border:var(--line);border-radius:50%;display:grid;place-items:center;background:var(--cream)}
+.rules b{display:block}
+.rules span{grid-column:2;color:#2e2826;font-size:.95rem}
+
+.moods{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.mood{border:var(--line);border-radius:var(--r);background:var(--card);padding:18px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.mood .fig{width:76px}
+.mood b{font-size:.98rem}
+.mood span{font-size:.8rem;color:var(--muted);line-height:1.35}
+.across{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:26px}
+.across .fig{width:58px}
+
+.sizes{display:flex;flex-wrap:wrap;gap:26px 40px;align-items:flex-end}
+.sz{display:flex;flex-direction:column;align-items:center;gap:8px}
+.ladder{display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap;background:var(--card);border:var(--line);border-radius:var(--r);padding:22px 26px}
+.marks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:22px}
+.mk{border:var(--line);border-radius:var(--r);background:var(--card);min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;position:relative}
+.mk .mono{position:absolute;left:14px;top:10px}
+.word{display:flex;align-items:center;gap:10px;font-weight:850;font-size:2rem;letter-spacing:-.045em;font-variation-settings:"ROND" 100}
+.word .fig{width:46px}
+.tile{width:84px;height:84px;border-radius:21px;display:grid;place-items:center;border:var(--line)}
+.tile .fig{width:58px}
+.fav{display:flex;align-items:center;gap:8px;border:var(--line);border-bottom:0;border-radius:10px 10px 0 0;background:var(--cotton);padding:7px 14px 7px 10px;font-size:.8rem;font-weight:600}
+.fav .fig{width:16px}
+
+.places{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.place{border:var(--line);border-radius:var(--r);background:var(--card);display:flex;flex-direction:column;min-width:0}
+.place.wide{grid-column:1/-1}
+.place-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:var(--line)}
+.verdict{border:var(--line);border-radius:999px;padding:.05em .75em;font-size:.76rem;font-weight:700;background:var(--sage);white-space:nowrap}
+.verdict.mid{background:var(--butter)}.verdict.no{background:var(--blush)}
+.stage{padding:20px;background:var(--cotton);flex:1;display:flex;flex-direction:column;gap:12px;min-width:0}
+.place-f{padding:12px 18px;border-top:var(--line);font-size:.9rem;color:#2e2826}
+
+.chat{display:grid;grid-template-columns:200px minmax(0,1fr);border:var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
+.chat aside{border-right:var(--line);padding:12px;display:flex;flex-direction:column;gap:4px;background:var(--cream)}
+.chat aside div{display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:9px;font-weight:620;font-size:.92rem}
+.chat aside div.on{background:var(--card);box-shadow:inset 0 0 0 1.5px var(--noir)}
+.chat aside .fig{width:24px}
+.conv{display:flex;flex-direction:column;min-width:0}
+.conv-h{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:var(--line)}
+.conv-h .fig{width:38px}
+.conv-h small{display:block;color:var(--muted);font-size:.78rem;line-height:1.2}
+.msgs{min-width:0;padding:14px;display:flex;flex-direction:column;gap:10px}
+.m{display:flex;gap:8px;align-items:flex-end;max-width:88%}
+.m .fig{width:26px}
+.m p{border:var(--line);border-radius:14px 14px 14px 4px;padding:8px 12px;font-size:.92rem;line-height:1.38;background:var(--cream)}
+.m.me{align-self:flex-end}.m.me p{border-radius:14px 14px 4px 14px;background:var(--sage)}
+.m.wait p{color:var(--muted);font-style:normal}
+
+.empty{position:relative;border:1.5px dashed var(--noir);border-radius:12px;padding:44px 16px 18px;text-align:center;margin-top:38px;background:var(--card)}
+.empty .fig{position:absolute;left:50%;top:-40px;margin-left:-34px;width:68px}
+.empty b{display:block}
+.toast{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;background:var(--card);border:var(--line);border-radius:999px;padding:6px 18px 6px 8px;font-weight:680;font-size:.92rem;box-shadow:3px 3px 0 var(--noir)}
+.toast .fig{width:38px}
+.chip{display:inline-flex;align-self:flex-start;align-items:center;gap:7px;border:var(--line);border-radius:999px;padding:3px 12px 3px 5px;font-size:.84rem;font-weight:650;background:var(--card)}
+.chip .fig{width:22px}
+.mail{border:var(--line);border-radius:10px;background:#fff;padding:22px;display:flex;flex-direction:column;gap:12px;font-family:Arial,Helvetica,sans-serif;font-size:.92rem;color:#222}
+.mail .from{display:flex;align-items:center;gap:8px;font-weight:700}
+.mail .from .fig{width:30px}
+.mail .cta{align-self:flex-start;background:var(--cherry);color:#fff;border-radius:10px;padding:9px 16px;font-weight:700}
+.mail .sign{display:flex;align-items:center;gap:8px;color:#666;font-size:.82rem;border-top:1px solid #ddd;padding-top:12px}
+.mail .sign .fig{width:22px}
+.wa{align-self:flex-start;max-width:340px;background:#fff;border:var(--line);border-radius:4px 14px 14px 14px;padding:10px 12px;font-family:Arial,Helvetica,sans-serif;font-size:.9rem;line-height:1.4}
+.wa-h{display:flex;align-items:center;gap:8px;font-weight:700;font-family:Arial,Helvetica,sans-serif;font-size:.92rem}
+.wa-h .tile{width:36px;height:36px;border-radius:50%}.wa-h .tile .fig{width:24px}
+
+.inks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.ink{border:var(--line);border-radius:var(--r);background:var(--card);padding:16px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ink .fig{width:60px}
+.ink small{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.new{font-size:.66rem;font-weight:750;text-transform:uppercase;letter-spacing:.06em;background:var(--butter);border:var(--line);border-radius:999px;padding:0 7px}
+.donts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;border-top:var(--line)}
+.donts div{padding:16px 0;border-bottom:var(--line)}
+.donts p{color:var(--muted);font-size:.95rem}
+footer .in{padding-block:36px 56px;font-size:.84rem;color:var(--muted)}
+
+@media (max-width:860px){
+  .two,.places,.donts{grid-template-columns:1fr}
+  .moods{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .chat{grid-template-columns:1fr}.chat aside{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:var(--line)}
+  section{padding-block:52px}
+}
+@media (max-width:480px){.moods{grid-template-columns:repeat(2,minmax(0,1fr))}.ladder{gap:16px;padding:18px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="in">
+    <span class="mono">Posteando · figure sheet · v6</span>
+    <h1>The ones who live on the <span class="serif">desk</span></h1>
+    <p class="lede">Five figures, each with a job, built on one grid so they hold together from a 16px tab icon to a landing page. Everything here is live vector. Use the bar below to switch the eyes, the blink and the glance for the whole sheet.</p>
+    <div class="lineup" aria-hidden="true">
+      <span class="fig blink live" data-shape="barras" data-color="verde"></span>
+      <span class="fig blink live" data-shape="globo" data-color="azul"></span>
+      <span class="fig blink live" data-shape="sello" data-color="cherry"></span>
+      <span class="fig blink live" data-shape="nota" data-color="maroon"></span>
+      <span class="fig blink live" data-shape="domo" data-color="noir"></span>
+    </div>
+  </div>
+</header>
+
+<div class="bar"><div class="in">
+  <div class="grp"><span class="mono">Eyes</span><button class="seg" type="button" data-set="es" data-v="a">Óvalos</button><button class="seg" type="button" data-set="es" data-v="b">Juntos</button><button class="seg" type="button" data-set="es" data-v="c">Trazo</button><button class="seg" type="button" data-set="es" data-v="d">Puntos</button></div>
+  <div class="grp"><span class="mono">Blink</span><button class="seg" type="button" data-set="blink" data-v="true">On</button><button class="seg" type="button" data-set="blink" data-v="false">Off</button></div>
+  <div class="grp"><span class="mono">Glance at cursor</span><button class="seg" type="button" data-set="follow" data-v="true">Nearest one</button><button class="seg" type="button" data-set="follow" data-v="false">Off</button></div>
+</div></div>
+
+<section>
+  <div class="in">
+    <div class="sec-h"><h2>Four eyes to compare</h2><p class="lede">Puntos is the chosen style and the sheet now opens with it. The other three stay here for reference, and you can still switch.</p></div>
+    <div class="eyegrid" id="eyegrid"></div>
+  </div>
+</section>
+
+<section>
+  <div class="in">
+    <div class="sec-h">
+      <h2>The cast</h2>
+      <p class="lede">Each shape is an object from our own world, so the figure already says what it does. One is the brand. The others are helpers people will learn to recognise. The helpers go by office nicknames, short and a little funny. They are working names, held loosely and easy to change.</p>
+    </div>
+    <div class="cast">
+      <article class="who"><span class="fig blink live" data-shape="sello" data-color="cherry"></span><span class="role">The brand</span><h3>Sello</h3><p>A seal, the mark of approval. This is the logo, the app icon and the voice of the product itself: notifications, system messages, the profile photo.</p></article>
+      <article class="who"><span class="fig blink live" data-shape="globo" data-color="azul"></span><span class="role">Copy</span><h3>Lety <small class="mono">Globo</small></h3><p>Lety, from “letras”. A speech bubble, because it writes what the brand says. Blue like the pen you write with.</p></article>
+      <article class="who"><span class="fig blink live" data-shape="nota" data-color="maroon"></span><span class="role">Revisión</span><h3>Checo <small class="mono">Nota</small></h3><p>Checo, from “checar”. A note with a folded corner, the one that comes back with comments. Yellow like a sticky note.</p></article>
+      <article class="who"><span class="fig blink live" data-shape="barras" data-color="verde"></span><span class="role">Números</span><h3>Conta <small class="mono">Barras</small></h3><p>Conta, as in “el conta”. Three rising bars. It replaces the bean from the mock, which was cute but said nothing. Green like a ledger.</p></article>
+      <article class="who"><span class="fig blink live" data-shape="domo" data-color="noir"></span><span class="role">Asistente</span><h3>Compa <small class="mono">Domo</small></h3><p>Compa, the one who lends a hand. A sun coming up over the edge of the desk. The general assistant, for when it arrives. Until then it is the one that peeks.</p></article>
+      <article class="who bench"><span class="fig" data-shape="etiqueta" data-color="noir" data-cut="cotton"></span><span class="role">On the bench</span><h3>Etiqueta and Boleto</h3><p>A tag and a ticket, drawn to prove the system extends. Candidates for the library helper and for billing. Not in use.</p><span class="fig" data-shape="boleto" data-color="noir" data-cut="cotton" style="width:72px"></span></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="in">
+    <div class="sec-h"><h2>How they are built</h2><p class="lede">Four rules make any new figure belong to the family, whoever draws it.</p></div>
+    <div class="two">
+      <div class="grid-fig"><svg viewBox="0 0 100 100" id="gridfig" role="img" aria-label="Globo drawn on the construction grid, with the eye line marked"></svg></div>
+      <ol class="rules">
+        <li><b>One grid, one flat colour</b><span>Every body fits a 100 by 100 square with the same margins. No outline, no gradient, no shading. The shape alone must be readable as its object.</span></li>
+        <li><b>The eyes are the only face</b><span>Same two eyes on every figure: same size, same gap, same pupils. They sit on a line between 42% and 58% of the height, wherever the body is widest. No mouth, no brows, no arms.</span></li>
+        <li><b>Corners from one family</b><span>Rounding comes from three radii (small, medium, large). That is what makes a note and a bubble feel like siblings.</span></li>
+        <li><b>A small cut for small sizes</b><span>At 24px and below the eyes grow a little so they stay readable, and fine details such as the fold on Nota drop out. Same idea, fewer details.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="in">
+    <div class="sec-h"><h2>Six ways to feel</h2><p class="lede">All expression comes from the eyes, so every figure can make every face. Six is the whole set. Each one is tied to a state of the product, not to decoration.</p></div>
+    <div class="moods" id="moods"></div>
+    <div class="across" id="across" aria-label="The same expression across the cast"></div>
+    <p class="sm muted" style="margin-top:14px;max-width:52rem">Motion is now quieter. Only the figure nearest your cursor glances at it, and the rest keep their own gaze. One figure blinks at a time, quickly and at uneven intervals, each eye closing on its own line. <button class="seg" type="button" id="blinknow">Blink the cast now</button></p>
+  </div>
+</section>
+
+<section>
+  <div class="in">
+    <div class="sec-h"><h2>From logo to tab icon</h2><p class="lede">Sello is the logo, with eight deep lobes. The same shape works at every size.</p></div>
+    <div class="ladder" id="ladder"></div>
+    <div class="logos" id="logos"></div>
+            <p class="sm muted" style="margin-top:14px">The name is still a working name, so the wordmark is a placeholder. The figure does not depend on it.</p>
+  </div>
+</section>
+
+<section>
+  <div class="in">
+    <div class="sec-h"><h2>Where they live</h2><p class="lede">Each place below has a plain verdict. They are strongest where a helper is speaking, and weakest where the channel cannot draw.</p></div>
+    <div class="places">
+      <article class="place wide">
+        <div class="place-h"><h3>Chat with a helper</h3><span class="verdict">Works best here</span></div>
+        <div class="stage">
+          <div class="chat">
+            <aside>
+              <div class="on"><span class="fig" data-shape="globo" data-color="azul" data-small="1"></span>Copy</div>
+              <div><span class="fig" data-shape="nota" data-color="maroon" data-small="1"></span>Revisión</div>
+              <div><span class="fig" data-shape="barras" data-color="verde" data-small="1"></span>Números</div>
+            </aside>
+            <div class="conv">
+              <div class="conv-h"><span class="fig blink" data-shape="globo" data-color="azul"></span><div><b>Copy</b><small>Escribe con la voz de Taquería El Güero</small></div></div>
+              <div class="msgs">
+                <div class="m me"><p>Hazme el caption del jueves.</p></div>
+                <div class="m"><span class="fig" data-shape="globo" data-color="azul" data-small="1"></span><p>Va: «Jueves de gringas. Llega con hambre.» Corto y sin signos de admiración, como le gusta.</p></div>
+                <div class="m me"><p>Otro, más antojable.</p></div>
+                <div class="m wait"><span class="fig think" data-shape="globo" data-color="azul" data-mood="pensando" style="width:34px"></span><p>Copy está escribiendo</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="place-f">The figure is the helper's face: full size in the header, the small cut in the list and beside each reply, and the thinking eyes instead of a spinner.</div>
+      </article>
+
+      <article class="place">
+        <div class="place-h"><h3>Around the app</h3><span class="verdict">Works, in small doses</span></div>
+        <div class="stage">
+          <span class="chip"><span class="fig" data-shape="globo" data-color="azul" data-small="1"></span>Borrador de Copy</span>
+          <span class="chip"><span class="fig" data-shape="nota" data-color="maroon" data-small="1"></span>Revisión dejó 2 notas</span>
+          <span class="toast"><span class="fig hop" data-shape="sello" data-color="cherry" data-mood="contento"></span>Publicado en Instagram</span>
+          <div class="empty"><span class="fig blink" data-shape="domo" data-color="noir" data-mood="dormido"></span><b>Esta semana está en blanco</b><span class="muted sm">Arrastra un post aquí o pídele ideas a Copy.</span></div>
+        </div>
+        <div class="place-f">Attribution chips, one toast when something good happens, and empty states. Never inside tables, forms or the calendar grid itself.</div>
+      </article>
+
+      <article class="place">
+        <div class="place-h"><h3>Email</h3><span class="verdict mid">Works as a still image</span></div>
+        <div class="stage">
+          <div class="mail">
+            <div class="from"><span class="fig" data-shape="sello" data-color="cherry"></span>Posteando</div>
+            <div><b>El Güero aprobó el mes de marzo</b></div>
+            <div>12 posts quedaron programados. El primero sale el martes a la 1:00 pm.</div>
+            <span class="cta">Ver el calendario</span>
+            <div class="sign"><span class="fig" data-shape="barras" data-color="verde" data-small="1"></span>Resumen preparado por Números</div>
+          </div>
+        </div>
+        <div class="place-f">Yes, with limits. Many mail apps block vector images and animation, so in email a figure is a small fixed picture: one expression, no movement, and the message must read fine if images are turned off.</div>
+      </article>
+
+      <article class="place">
+        <div class="place-h"><h3>WhatsApp</h3><span class="verdict no">Profile photo only</span></div>
+        <div class="stage">
+          <div class="wa-h"><span class="tile" style="background:var(--cotton)"><span class="fig" data-shape="sello" data-color="cherry"></span></span>Posteando</div>
+          <div class="wa">Hola, Güero. Ya está lista la parrilla de marzo de Taquería El Güero para que la revises: posteando.mx/elguero</div>
+        </div>
+        <div class="place-f">Messages are plain text, so the figures cannot appear in them. Sello is the business profile photo and the voice does the rest.</div>
+      </article>
+
+      <article class="place">
+        <div class="place-h"><h3>Client portal</h3><span class="verdict mid">One moment only</span></div>
+        <div class="stage">
+          <span class="toast"><span class="fig hop" data-shape="sello" data-color="cherry" data-mood="guino"></span>Listo. Tu agencia ya se enteró.</span>
+          <p class="sm muted">The portal belongs to the client's brand, not ours. Sello appears once, when they approve, and in the footer mark.</p>
+        </div>
+        <div class="place-f">The helpers stay out of the portal unless the client is the one talking to one.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="in">
+    <div class="sec-h"><h2>Their inks</h2><p class="lede">Each figure owns one ink, like the pens on a desk. All five are settled: cherry for Sello, pen blue for Copy, sticky-note yellow for Revisión, ledger green for Números and noir for the assistant. Yellow is the one light body, so its eyes turn dark.</p></div>
+    <div class="logos" style="grid-template-columns:minmax(0,420px)" id="revs"></div>
+    <p class="sm muted" style="margin-top:14px;max-width:52rem">The colours you sent are brighter than our cotton and cherry. I took that as a cue for the helpers, which are small and can carry more colour, and kept the base palette as it is. Paper stays quiet so the ink can be loud.</p>
+  </div>
+</section>
+
+<section>
+  <div class="in">
+    <div class="sec-h"><h2>Where they do not go</h2></div>
+    <div class="donts">
+      <div><h3>Errors, billing and anything about data</h3><p>No figure reacts to a failed post or a charge. Alerta exists for attention, not for comedy.</p></div>
+      <div><h3>Below 16px, or crowded together</h3><p>Under 16px the eyes close up. More than one figure in a view only in a line-up like the top of this page.</p></div>
+      <div><h3>As decoration</h3><p>A figure is there because someone is speaking or something happened. If it is only filling a corner, it goes.</p></div>
+      <div><h3>With extra features</h3><p>No mouths, hats, arms, seasonal costumes or new colours per campaign. The restraint is what keeps them from reading as childish.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="in">Figure sheet v6. Client names and messages are invented examples. Shapes are original drawings for this project.</div></footer>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ST={es:'d',blink:true,follow:true,lobes:8,rev:'amarillo'};var LIGHT={amarillo:1,butter:1};
+  function scallop(n,R,r){var d='';for(var i=0;i<=n;i++){var a=(i/n)*Math.PI*2-Math.PI/2,x=(50+R*Math.cos(a)).toFixed(2),y=(50+R*Math.sin(a)).toFixed(2);d+=i?'A'+r+' '+r+' 0 0 1 '+x+' '+y:'M'+x+' '+y;}return d+'Z';}
+  function lobed(n){var h=Math.PI/n,R=36,r=R*Math.sin(h)*1.06,out=R*Math.cos(h)+r-Math.sqrt(r*r-Math.pow(R*Math.sin(h),2)),f=43.5/out;R*=f;r*=f;
+    var d='';for(var i=0;i<=n;i++){var a=(i/n)*Math.PI*2-Math.PI/2+h,x=(50+R*Math.cos(a)).toFixed(2),y=(50+R*Math.sin(a)).toFixed(2);d+=i?'A'+r.toFixed(2)+' '+r.toFixed(2)+' 0 0 1 '+x+' '+y:'M'+x+' '+y;}return d+'Z';}
+  var S={
+    sello:{d:scallop(12,40.5,13),ds:scallop(8,38,18),y:49},
+    globo:{d:'M28 12H72A22 22 0 0 1 94 34V50A22 22 0 0 1 72 72H55C47 78 39 86 32 92C29 94.5 25.6 93 26 89.5L28 72A22 22 0 0 1 6 50V34A22 22 0 0 1 28 12Z',y:42},
+    nota:{d:'M22 8H61L92 39V78A14 14 0 0 1 78 92H22A14 14 0 0 1 8 78V22A14 14 0 0 1 22 8Z',y:60,fold:'M61 8V29A10 10 0 0 0 71 39H92Z'},
+    barras:{d:'M17 56H36V43A9 9 0 0 1 45 34H64V21A9 9 0 0 1 73 12H83A9 9 0 0 1 92 21V81A9 9 0 0 1 83 90H17A9 9 0 0 1 8 81V65A9 9 0 0 1 17 56Z',y:61,c:61},
+    domo:{d:'M5 78A45 45 0 0 1 95 78A10 10 0 0 1 85 88H15A10 10 0 0 1 5 78Z',y:59},
+    etiqueta:{d:'M36 20H80A12 12 0 0 1 92 32V68A12 12 0 0 1 80 80H36Q31 80 27.5 76.5L7 55Q3 50 7 45L27.5 23.5Q31 20 36 20ZM27 50a4.5 4.5 0 1 0-9 0a4.5 4.5 0 1 0 9 0Z',y:50,c:61},
+    boleto:{d:'M18 22H82A10 10 0 0 1 92 32V40A10 10 0 0 0 92 60V68A10 10 0 0 1 82 78H18A10 10 0 0 1 8 68V60A10 10 0 0 0 8 40V32A10 10 0 0 1 18 22Z',y:50},
+    estrella:{d:'M50 10L62 35L90 38L71 58L77 88L50 74L24 90L30 59L9 41L38 35Z',y:52,stroke:9}
+  };
+  var SQUIG='M20 93C29 62 40 34 53 8C58 31 68 60 81 88C56 73 30 57 6 45C36 41 66 36 94 31C70 50 45 69 24 85';
+  function ln(d,c,w){return '<path d="'+d+'" fill="none" stroke="'+c+'" stroke-width="'+(w||4.2)+'" stroke-linecap="round" stroke-linejoin="round"/>';}
+  function arc(x,y,up,c,h){h=h||7;return ln('M'+(x-h)+' '+(y+(up?3:0))+'Q'+x+' '+(y+(up?-9:6))+' '+(x+h)+' '+(y+(up?3:0)),c);}
+  function E(s){return '<g class="eye">'+s+'</g>';}
+  function eyes(c,y,o){
+    var W=o.white,m=o.mood,es=o.es,L,R,g;
+    if(o.cut||o.small){g=11;return [c-g,c+g].map(function(x){return '<ellipse cx="'+x+'" cy="'+y+'" rx="7.4" ry="9.6" fill="'+W+'"/>';}).join('');}
+    if(es==='c'){ // trazo: drawn with the marker
+      g=11;L=c-g;R=c+g;var w=3.8;
+      var ring=function(x,r){return '<circle cx="'+x+'" cy="'+y+'" r="'+(r||6)+'" fill="none" stroke="'+W+'" stroke-width="'+w+'"/>';};
+      var brow=function(x,l,r){return ln('M'+(x-6)+' '+(y-12+l)+'Q'+x+' '+(y-14.5+(l+r)/2)+' '+(x+6)+' '+(y-12+r),W,w);};
+      var up=function(x){return ln('M'+(x-6.5)+' '+(y+4)+'Q'+x+' '+(y-9)+' '+(x+6.5)+' '+(y+4),W,w);};
+      var dn=function(x){return ln('M'+(x-6.5)+' '+(y-2)+'Q'+x+' '+(y+8)+' '+(x+6.5)+' '+(y-2),W,w);};
+      var dash=function(x){return ln('M'+(x-5.5)+' '+(y-9)+'H'+(x+5.5),W,w);};
+      if(m==='contento')return E(up(L))+E(up(R))+brow(L,-1,-3)+brow(R,-3,-1);
+      if(m==='dormido')return E(dn(L))+E(dn(R))+dash(L)+dash(R);
+      if(m==='guino')return E(ring(L))+brow(L,0,0)+E(up(R))+brow(R,-3,-1);
+      if(m==='pensando')return E(ring(L))+E(ring(R))+brow(L,-4,-1)+brow(R,1,1);
+      if(m==='alerta')return E(ring(L,7))+E(ring(R,7))+brow(L,-1,-5)+brow(R,-5,-1);
+      return E(ring(L))+E(ring(R))+brow(L,0,0)+brow(R,0,0);
+    }
+    g=es==='b'?10.2:es==='d'?9:11;L=c-g;R=c+g;
+    var open=function(x){
+      if(es==='d'){var r=m==='alerta'?[6.2,7.4]:[4.6,6.2];return '<ellipse class="p" cx="'+x+'" cy="'+y+'" rx="'+r[0]+'" ry="'+r[1]+'" fill="'+W+'"/>';}
+      if(es==='b'){var al=m==='alerta';return '<ellipse cx="'+x+'" cy="'+y+'" rx="'+(al?10:9.6)+'" ry="'+(al?12.2:11.2)+'" fill="'+W+'"/><g class="p"><circle cx="'+x+'" cy="'+y+'" r="'+(al?3.6:5.9)+'" fill="#1B1717"/>'+(al?'':'<circle cx="'+(x-2)+'" cy="'+(y-2.3)+'" r="1.7" fill="'+W+'"/>')+'</g>';}
+      var a=m==='alerta';return '<ellipse cx="'+x+'" cy="'+y+'" rx="'+(a?8.6:7.6)+'" ry="'+(a?10.8:9.6)+'" fill="'+W+'"/><circle class="p" cx="'+x+'" cy="'+(y+(a?0:1))+'" r="'+(a?3:4.3)+'" fill="#1B1717"/>';
+    };
+    var h=es==='d'?6:7;
+    var aL=c-(es==='d'?9.5:11.5),aR=c+(es==='d'?9.5:11.5);
+    if(m==='contento')return E(arc(aL,y,1,W,h))+E(arc(aR,y,1,W,h));
+    if(m==='dormido')return E(arc(aL,y,0,W,h))+E(arc(aR,y,0,W,h));
+    if(m==='guino')return E(open(L))+E(arc(R,y,1,W,h));
+    return E(open(L))+E(open(R));
+  }
+  function svg(shape,o){
+    var s=S[shape],body='var(--'+o.color+')';
+    o.white=o.cut?'var(--'+o.cut+')':LIGHT[o.color]?'#1B1717':'#FFFDF7';
+    return '<svg viewBox="0 0 100 100"><path fill-rule="evenodd" d="'+(shape==='sello'?(o.lobes===12?s.d:lobed(o.lobes)):s.d)+'" fill="'+body+'"'+(s.stroke?' stroke="'+body+'" stroke-width="'+s.stroke+'" stroke-linejoin="round"':'')+'/>'+(s.fold&&!o.small?'<path d="'+s.fold+'" fill="'+o.white+'" opacity=".26"/>':'')+'<g class="eyes">'+eyes(s.c||50,s.y,o)+'</g></svg>';
+  }
+  function paint(el){
+    if(el.dataset.squig){el.innerHTML='<svg viewBox="0 0 100 100">'+ln(SQUIG,'var(--'+el.dataset.color+')',el.dataset.squig)+'</svg>';return;}
+    var es=el.dataset.es||ST.es,mood=el.dataset.mood||'atento';
+    var col=(el.dataset.shape==='nota'&&el.dataset.color==='maroon')?ST.rev:el.dataset.color;
+    el.innerHTML=svg(el.dataset.shape,{color:col,mood:mood,small:!!el.dataset.small,cut:el.dataset.cut,es:es,lobes:+(el.dataset.lobes||ST.lobes)});
+    el.setAttribute('aria-hidden','true');el.dataset.esr=es;
+    el.classList.toggle('rest',mood==='atento'||mood==='guino');
+    el.dataset.can=(!el.dataset.small&&!el.dataset.cut&&(mood==='atento'||mood==='alerta'))?'1':'';
+  }
+  function mk(shape,color,extra,cls,style){return '<span class="fig '+(cls||'')+'" data-shape="'+shape+'" data-color="'+color+'" '+(extra||'')+(style?' style="'+style+'"':'')+'></span>';}
+  function $(id){return document.getElementById(id);}
+
+  // eye comparison
+  var EYES=[['a','Óvalos','Round 1. Neutral and tidy, but the small centred pupils stare.'],
+            ['b','Juntos','Bigger, closer together, with a large pupil that looks off to one side. Warmer and more alive.'],
+            ['c','Trazo','Drawn with the marker: a ring and a brow. The brows carry the feeling. No pupils, so nothing stares.'],
+            ['d','Puntos','Two plain dots. The quietest option, closest to a logo.','Chosen']];
+  $('eyegrid').innerHTML=EYES.map(function(e){
+    var f=function(sh,co,mo){return mk(sh,co,'data-es="'+e[0]+'" data-mood="'+mo+'"');};
+    return '<div class="eyecard"><div class="six">'+f('globo','azul','atento')+f('sello','cherry','contento')+f('nota','maroon','pensando','think')+f('barras','verde','alerta')+f('domo','noir','guino')+f('globo','azul','dormido')+'</div><h3>'+e[1]+(e[3]?' <span class="new">'+e[3]+'</span>':'')+'</h3><p>'+e[2]+'</p><button class="pick" type="button" data-set="es" data-v="'+e[0]+'">Use on this sheet</button></div>';}).join('');
+
+  var moods=[['atento','Atento','The default. Present, listening.'],['pensando','Pensando','Working on it. Replaces the spinner.','think'],['contento','Contento','Approved, published, done.'],['guino','Guiño','The wink, for the rare joke.'],['dormido','Dormido','Nothing here yet, or paused.'],['alerta','Alerta','Needs your attention. Never played for laughs.']];
+  $('moods').innerHTML=moods.map(function(m){return '<div class="mood">'+mk('globo','azul','data-mood="'+m[0]+'"',m[3])+'<b>'+m[1]+'</b><span>'+m[2]+'</span></div>';}).join('');
+  var cast=[['sello','cherry'],['globo','azul'],['nota','maroon'],['barras','verde'],['domo','noir']];
+  $('across').innerHTML='<span class="mono">Contento, across the cast</span>'+cast.map(function(c){return mk(c[0],c[1],'data-mood="contento"');}).join('')+'<span class="mono" style="margin-left:14px">Alerta</span>'+cast.map(function(c){return mk(c[0],c[1],'data-mood="alerta"');}).join('');
+  $('ladder').innerHTML=[88,56,40,24,16].map(function(z){var sm=z<=24?'data-small="1"':'';return '<div class="sz"><div style="display:flex;gap:'+Math.max(6,z/6)+'px;align-items:flex-end">'+mk('sello','cherry',sm,'','width:'+z+'px')+mk('globo','azul',sm,'','width:'+z+'px')+mk('barras','verde',sm,'','width:'+z+'px')+'</div><span class="mono">'+z+'px'+(z<=24?' · small cut':'')+'</span></div>';}).join('');
+
+  // logo
+  var sl=function(x,st,c,cut){return mk('sello',c||'cherry',(x||'')+(cut?' data-cut="'+cut+'"':''),'',st);};
+  $('logos').className='marks';
+  $('logos').innerHTML='<div class="mk"><span class="mono">Wordmark</span><span class="word">'+sl('','width:46px')+'posteando</span></div>'+
+    '<div class="mk"><span class="mono">App icon</span><div style="display:flex;gap:14px"><span class="tile" style="background:var(--cotton)">'+sl('','width:58px')+'</span><span class="tile" style="background:var(--cherry)">'+sl('','width:58px','cream','cherry')+'</span></div></div>'+
+    '<div class="mk"><span class="mono">Browser tab, 16px</span><span class="fav">'+sl('data-small="1"','width:16px')+'Posteando</span></div>'+
+    '<div class="mk"><span class="mono">One colour (stamp, print)</span><div style="display:flex;gap:12px;align-items:center">'+sl('','width:60px','noir','card')+mk('globo','noir','data-cut="card"','','width:60px')+mk('nota','noir','data-cut="card"','','width:60px')+'</div></div>';
+
+  // Revisión colour candidates
+  var REV=[['amarillo','Amarillo','#E8B62C','Yellow like a sticky note, which is what Nota is. It replaced dark red, which sat too close to Sello.','Chosen']];
+  $('revs').innerHTML=REV.map(function(r){var f=function(sh,co,x,st){return mk(sh,co,x||'','',st);};
+    return '<div class="logo-c"><div class="lrow" style="border:0;padding:0;justify-content:center;gap:5px;flex-wrap:nowrap">'+f('sello','cherry','','width:40px')+f('globo','azul','','width:40px')+'<span class="fig" data-shape="nota" data-color="'+r[0]+'" style="width:52px"></span>'+f('barras','verde','','width:40px')+f('domo','noir','','width:40px')+'</div><h3>'+r[1]+(r[4]?' <span class="new">'+r[4]+'</span>':'')+' <small class="mono">'+r[2]+'</small></h3><p>'+r[3]+'</p>'+
+    '<div class="lrow"><span class="chip"><span class="fig" data-shape="nota" data-color="'+r[0]+'" data-small="1"></span>Revisión dejó 2 notas</span><span class="fig" data-shape="nota" data-color="'+r[0]+'" data-mood="contento" style="width:40px"></span><span class="fig" data-shape="nota" data-color="'+r[0]+'" data-mood="alerta" style="width:40px"></span></div>'+
+    '</div>';}).join('');
+
+  var figs;
+  function paintAll(){figs=[].slice.call(document.querySelectorAll('.fig'));figs.forEach(paint);
+    var g='';for(var i=0;i<=100;i+=10)g+='<path d="M'+i+' 0V100M0 '+i+'H100" stroke="rgba(39,64,122,.16)" stroke-width=".4"/>';
+    g+='<rect x="6" y="6" width="88" height="88" fill="none" stroke="rgba(27,23,23,.45)" stroke-width=".5" stroke-dasharray="2 2"/>';
+    g+=svg('globo',{color:'azul',mood:'atento',es:ST.es}).replace(/^<svg[^>]*>|<\/svg>$/g,'');
+    g+='<path d="M0 42H100" stroke="#810100" stroke-width=".7" stroke-dasharray="3 2"/><circle cx="72" cy="50" r="22" fill="none" stroke="#810100" stroke-width=".5" stroke-dasharray="1.5 1.5"/>';
+    $('gridfig').innerHTML=g;
+    [].forEach.call(document.querySelectorAll('[data-set]'),function(b){b.setAttribute('aria-pressed',String(ST[b.dataset.set])===b.dataset.v);});
+  }
+  paintAll();
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-set]');if(!b)return;var k=b.dataset.set,v=b.dataset.v;ST[k]=(k==='es'||k==='rev')?v:k==='lobes'?+v:v==='true';if(cur){cur.style.removeProperty('--px');cur.style.removeProperty('--py');cur=null;}paintAll();});
+
+  // only the nearest figure glances at the cursor
+  var cur=null,raf=0,mx=0,my=0;
+  function look(){raf=0;var best=null,bd=240;
+    if(ST.follow)figs.forEach(function(el){if(!el.dataset.can)return;var r=el.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;var d=Math.hypot(mx-(r.left+r.width/2),my-(r.top+r.height/2));if(d<bd){bd=d;best=el;}});
+    if(cur&&cur!==best){cur.style.removeProperty('--px');cur.style.removeProperty('--py');}
+    cur=best;if(!best)return;var r=best.getBoundingClientRect(),dx=mx-(r.left+r.width/2),dy=my-(r.top+r.height/2),d=Math.hypot(dx,dy)||1,k=Math.min(1,d/90)*3;
+    best.style.setProperty('--px',(dx/d*k).toFixed(2)+'px');best.style.setProperty('--py',(dy/d*k).toFixed(2)+'px');}
+  addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;if(!raf)raf=requestAnimationFrame(look);},{passive:true});
+
+  // one figure blinks at a time, at uneven intervals
+  function blinkOne(el,again){el.classList.add('is-blink');setTimeout(function(){el.classList.remove('is-blink');if(again)setTimeout(function(){blinkOne(el);},170);},120);}
+  function tick(){setTimeout(tick,1500+Math.random()*2600);if(!ST.blink||reduce||document.hidden)return;
+    var v=figs.filter(function(el){if(!el.dataset.can)return false;var r=el.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight;});
+    if(v.length)blinkOne(v[Math.floor(Math.random()*v.length)],Math.random()<.2);}
+  tick();
+  $('blinknow').onclick=function(){figs.forEach(function(el){if(el.dataset.can&&el.closest('.cast'))blinkOne(el);});};
+})();
+</script>
