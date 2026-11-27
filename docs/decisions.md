@@ -51,6 +51,8 @@
 - 2026-11-27: Release 0 gate: every permission works end to end and the screencasts are recorded; review submitted after business verification; pilots on Standard Access.
 - 2026-11-27: Release 1 web: the mocked shell with calendar, post sheet, upload, connect, approval page and a copywriter chat. Inicio, posts table and command palette in releases 2 to 4.
 
+- 2026-11-27: While the project starts, work goes directly on `main`, without pull requests.
+
 ## Pricing
 
 - 2026-11-23: No per-seat charging. Usage-based where possible, advanced features behind a subscription.

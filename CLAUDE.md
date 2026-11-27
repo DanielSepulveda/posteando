@@ -19,6 +19,7 @@ The docs in this repo are the source of truth. Links to claude.ai artifacts insi
 - **Release by release.** Work on the current release only. Each task ends with passing tests and CI.
 - **Explain trade-offs plainly.** Daniel prefers plain-language summaries and explicit trade-offs: what we gain, what we pay, what we chose. No jargon walls.
 - **Ambition in design, not in spend.** Daniel does not want the simpler option picked just because it is one person plus AI building ("complexity must earn its place"), and the platform must run on tight margins, so avoid expensive services.
+- **Commit straight to `main` for now.** Daniel (2026-11-27): while the project starts, work directly on `main` without pull requests. Keep commits small with clear messages, and keep CI green on `main`. Ask before going back to pull requests or adding branch protection.
 - **Record decisions.** When a spike or a question is answered, add a dated line to `docs/decisions.md` and update the doc it affects in the same PR.
 
 ## Hard rules
